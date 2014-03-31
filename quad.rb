@@ -3,6 +3,7 @@ def main
 		puts "Usage: quad.rb a b c"
 		exit
 	end
+	
 	ARGV.each do |a|
 		puts "Argument: #{a}"
 	end
