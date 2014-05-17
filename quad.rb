@@ -10,6 +10,7 @@ to use this formula, the function MUST be in the form
 author: Christopher Sprague
 =end
 
+# main function, controls and runs the program's primary functionality
 def main
 	if ARGV.length != 3
 		puts "Usage: quad.rb a b c"
@@ -19,6 +20,8 @@ def main
 	quadratic(ARGV[0], ARGV[1], ARGV[2])
 end
 
+# make sure that the a, b, and c values we're getting properly
+# compose a feasible quadratic.
 def validate(a, b, c)
 	if a == "#{0}" # among other things, it's not really a quadratic if a == 0
 		puts "Error: \"a\" value must be non-zero"
@@ -35,29 +38,31 @@ def validate(a, b, c)
 	end
 end
 
+# math logic for the quadratic
 def quadratic(a, b, c)
+
 	sol1, sol2 = 0
 	a,b,c = a.to_i, b.to_i, c.to_i
+
 	sol1 = ( ( -b + (b**2 - 4*a*c)**0.5 ) / ( 2*a ) )
 	sol2 = ( ( -b - (b**2 - 4*a*c)**0.5 ) / ( 2*a ) )
+
+	# if there is only 1 solution
 	if sol1 == sol2
 		puts "1 real solution"
 		puts "#{sol1}"
 		return 1
 	end
+
+	# otherwise (implies 2 solutions)
 	puts "2 real solutions"
 	puts "#{sol1}"
 	puts "#{sol2}"
 	return 2
 end
 
+# call main on program execution
 if __FILE__ == $0
 	main()
 end
-
-
-
-
-
-
 

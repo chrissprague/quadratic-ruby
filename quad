@@ -1,1 +1,2 @@
+# run the quad.rb program with given arguments
 ruby ~/bin/code/quad.rb $1 $2 $3
