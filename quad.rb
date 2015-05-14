@@ -1,3 +1,5 @@
+#!/usr/bin/ruby
+
 # quadratic program in ruby to find x values
 =begin
 the quadtratic formula is:
