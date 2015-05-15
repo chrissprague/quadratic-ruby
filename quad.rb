@@ -12,14 +12,37 @@ to use this formula, the function MUST be in the form
 author: Christopher Sprague
 =end
 
+require 'scanf'
+
 # main function, controls and runs the program's primary functionality
 def main
-	if ARGV.length != 3
+	if ARGV.length == 2
+		flag_arg = ARGV[0]
+		if flag_arg != "-f"
+			puts "Invalid flag: \"#{flag_arg}\""
+			puts "Supported: -f"
+			exit
+		end
+		puts "Attemping to read file: #{ARGV[1]}"
+		file = File.open(ARGV[1], "r")
+		file.readlines.each do |line|
+			values = line.scanf("%d %d %d")
+			puts "Values: #{values}"
+			a = values[0].to_i
+			b = values[1].to_i
+			c = values[2].to_i
+			validate(a, b, c)
+			quadratic(a, b, c)
+			puts "-----"
+		end
+		
+	elsif ARGV.length != 3
 		puts "Usage: quad.rb a b c"
 		exit
+	else
+		validate(ARGV[0], ARGV[1], ARGV[2]) # erroneous input checking
+		quadratic(ARGV[0], ARGV[1], ARGV[2])
 	end
-	validate(ARGV[0], ARGV[1], ARGV[2]) # erroneous input checking
-	quadratic(ARGV[0], ARGV[1], ARGV[2])
 end
 
 # make sure that the a, b, and c values we're getting properly
