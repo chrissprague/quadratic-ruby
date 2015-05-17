@@ -24,15 +24,22 @@ def main
 			exit
 		end
 		puts "Attemping to read file: #{ARGV[1]}"
+		puts "-----"
 		file = File.open(ARGV[1], "r")
 		file.readlines.each do |line|
+			# searches for 3 space-separated numbers. ignores
+			# anything else on the rest of the line
 			values = line.scanf("%d %d %d")
-			puts "Values: #{values}"
-			a = values[0].to_i
-			b = values[1].to_i
-			c = values[2].to_i
-			validate(a, b, c)
-			quadratic(a, b, c)
+			if values.length == 0
+				puts "Error: invalid line read: \"#{line[0..-2]}\""
+			else
+				puts "Values: #{values}"
+				a = values[0].to_i
+				b = values[1].to_i
+				c = values[2].to_i
+				validate(a, b, c)
+				quadratic(a, b, c)
+			end
 			puts "-----"
 		end
 		
